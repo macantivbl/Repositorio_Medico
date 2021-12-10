@@ -9,7 +9,7 @@ router.get('/', permission('admin'), async (req, res) => {
   return res.status(200).json({ data: Cliente });
 });
 
-// Creating a new order
+
 router.post('/', permission('admin'), async (req, res) => {
   const { body } = req;
   const order = await sequelize.models.Cliente.create({
@@ -22,7 +22,7 @@ router.post('/', permission('admin'), async (req, res) => {
   return res.status(201).json({ data: order });
 });
 
-// Update a order by id
+
 router.put('/:id', permission('admin'), async (req, res) => {
   const { body, params: { id } } = req;
   const order = await sequelize.models.Cliente.findByPk(id);
@@ -38,7 +38,7 @@ router.put('/:id', permission('admin'), async (req, res) => {
   return res.json({ data: updatedOrder });
 });
 
-// Delete a order by id
+
 router.delete('/:id', permission('admin'), async (req, res) => {
   const { params: { id } } = req;
   const order = await sequelize.models.Cliente.findByPk(id);

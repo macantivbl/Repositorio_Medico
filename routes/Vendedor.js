@@ -3,13 +3,11 @@ const router = express.Router();
 const sequelize = require('../db');
 const permission = require('../middlewares/permission');
 
-// Cliente
 router.get('/', permission('admin'), async (req, res) => {
   const Cliente = await sequelize.models.Vendedor.findAndCountAll();
   return res.status(200).json({ data: Vendedor });
 });
 
-// Creating a new order
 router.post('/', permission('admin'), async (req, res) => {
   const { body } = req;
   const order = await sequelize.models.Vendedor.create({
@@ -22,7 +20,6 @@ router.post('/', permission('admin'), async (req, res) => {
   return res.status(201).json({ data: order });
 });
 
-// Update a order by id
 router.put('/:id', permission('admin'), async (req, res) => {
   const { body, params: { id } } = req;
   const order = await sequelize.models.Vendedor.findByPk(id);
@@ -37,7 +34,7 @@ router.put('/:id', permission('admin'), async (req, res) => {
   return res.json({ data: updatedOrder });
 });
 
-// Delete a order by id
+
 router.delete('/:id', permission('admin'), async (req, res) => {
   const { params: { id } } = req;
   const order = await sequelize.models.Vendedor.findByPk(id);
